@@ -4,6 +4,22 @@
 <div class="container" style="max-width: 700px; margin: 20px auto; padding: 20px;">
     <h2>Crear mi perfil en la comunidad</h2>
 
+    <div style="background-color: #eef2ff; border: 1px solid #c7d2fe; border-radius: 10px; padding: 18px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(96, 165, 250, 0.12);">
+        <h3 style="margin-top: 0; color: #3730a3;">Contáctanos</h3>
+        <div style="display: grid; gap: 12px;">
+            <div style="background-color: #fff; padding: 12px; border-radius: 8px; border: 1px solid #dbeafe;">
+                <strong>Samir Emmanuel Banda Zambrano</strong><br>
+                <a href="mailto:sebanda.9640@unicesmag.edu.co" style="color: #1d4ed8; text-decoration: none;">sebanda.9640@unicesmag.edu.co</a><br>
+                <span style="color: #475569;">3189827377</span>
+            </div>
+            <div style="background-color: #fff; padding: 12px; border-radius: 8px; border: 1px solid #dbeafe;">
+                <strong>Yoseph Emanuel Constain Lasso</strong><br>
+                <a href="mailto:lassoyoseph@gmail.com" style="color: #1d4ed8; text-decoration: none;">lassoyoseph@gmail.com</a><br>
+                <span style="color: #475569;">3166482349</span>
+            </div>
+        </div>
+    </div>
+
     <p style="color: #666; margin-bottom: 20px;">Comparte tu información para que otros fans de Kuroko no Basket puedan contactarte. Tu correo será cargado automáticamente.</p>
 
     @if($errors->any())
@@ -31,7 +47,15 @@
 
         <div style="margin-bottom: 15px;">
             <label style="font-weight: bold; display: block; margin-bottom: 5px;">Personaje favorito</label>
-            <input type="text" name="personaje_favorito" value="{{ old('personaje_favorito') }}" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+            <select name="personaje_favorito" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                <option value="">Selecciona tu personaje favorito</option>
+                <option value="Seijūrō Akashi" {{ old('personaje_favorito') == 'Seijūrō Akashi' ? 'selected' : '' }}>Seijūrō Akashi</option>
+                <option value="Daiki Aomine" {{ old('personaje_favorito') == 'Daiki Aomine' ? 'selected' : '' }}>Daiki Aomine</option>
+                <option value="Shintarō Midorima" {{ old('personaje_favorito') == 'Shintarō Midorima' ? 'selected' : '' }}>Shintarō Midorima</option>
+                <option value="Atsushi Murasakibara" {{ old('personaje_favorito') == 'Atsushi Murasakibara' ? 'selected' : '' }}>Atsushi Murasakibara</option>
+                <option value="Ryōta Kise" {{ old('personaje_favorito') == 'Ryōta Kise' ? 'selected' : '' }}>Ryōta Kise</option>
+                <option value="Tetsuya Kuroko" {{ old('personaje_favorito') == 'Tetsuya Kuroko' ? 'selected' : '' }}>Tetsuya Kuroko</option>
+            </select>
         </div>
 
         <div style="margin-bottom: 15px;">
