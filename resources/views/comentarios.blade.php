@@ -3,6 +3,13 @@
 @section('content')
 <div class="container" style="padding: 20px;">
     <h2>Tabla de Fans Registrados</h2>
+
+    @if(session('success'))
+        <div style="margin-bottom: 20px; color: green; font-weight: bold;">
+            {{ session('success') }}
+        </div>
+    @endif
+
     @if(isset($fans) && $fans->count() > 0)
         <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
@@ -14,6 +21,7 @@
                     <th>Personaje</th>
                     <th>Equipo</th>
                     <th>Motivo</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +34,14 @@
                     <td>{{ $fan->personaje_favorito }}</td>
                     <td>{{ $fan->equipo_favorito }}</td>
                     <td>{{ $fan->motivo }}</td>
+                    <td>
+                        <a href="{{ route('fans.edit', $fan) }}" style="margin-right: 8px; color: #2563eb;">Editar</a>
+                        <form action="{{ route('fans.destroy', $fan) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="background: none; border: none; color: #dc2626; cursor: pointer;">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

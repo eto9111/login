@@ -4,38 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Capitulo;
-use App\Models\Resena;
-use Illuminate\Support\Facades\Auth;
 
 class CapituloController extends Controller
 {
-    // Mostrar capítulos
     public function index()
     {
         $capitulos = Capitulo::all();
-        $resenas = Resena::with('user')->get();
-        return view('capitulos', compact('capitulos', 'resenas'));
+        return view('capitulos', compact('capitulos'));
     }
 
-    // Guardar capítulo
     public function store(Request $request)
     {
-        Capitulo::create($request->all());
-        return redirect('/capitulos');
-    }
-
-    // Guardar reseña
-    public function storeResena(Request $request)
-    {
         $request->validate([
-            'contenido' => 'required|string',
+            'nombre' => 'required|string|max:255',
+            'numero' => 'required|integer|min:1',
+            'descripcion' => 'required|string',
+            'video_url' => 'required|url',
         ]);
 
-        Resena::create([
-            'user_id' => Auth::id(),
-            'contenido' => $request->contenido,
-        ]);
+        Capitulo::create($request->all());
 
-        return redirect('/capitulos')->with('success_resena', 'Reseña guardada exitosamente.');
+        return redirect('/capitulos')->with('success', 'Capítulo guardado correctamente.');
     }
 }

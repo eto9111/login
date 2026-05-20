@@ -7,12 +7,12 @@
 @section('content')
 
 <!-- Loader -->
-<div class="loader-overlay" id="loader">
+<div class="loader-overlay" id="loader" style="display: none;">
     <div class="basketball-loader"></div>
 </div>
 
 <!-- Tienda Principal -->
-<div class="store-container" id="app-content" style="display: none;">
+<div class="store-container" id="app-content" style="display: block;">
     <header class="store-header">
         <div class="store-title">Kuroko Store</div>
         <div class="cart-icon-wrapper" onclick="toggleCart()">
@@ -193,12 +193,8 @@
     
     // Inicialización
     document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-            document.getElementById('loader').style.display = 'none';
-            document.querySelectorAll('#app-content').forEach(el => el.style.display = 'block');
-            renderProducts();
-            updateCartBadge();
-        }, 800);
+        renderProducts();
+        updateCartBadge();
     });
 
     // Renderizar Productos
